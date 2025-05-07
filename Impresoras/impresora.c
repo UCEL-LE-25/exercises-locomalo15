@@ -79,7 +79,10 @@ void sectorMasActivo(Impresora impresora[SECTORES][IMPRESORAS])
             sectorGanador = i;
         }
     }
-    if (sectorGanador == 0)
+    if (maxPaginas == 0) {
+    printf("\n Ningun sector ha sido activo.");
+    }
+    else if (sectorGanador == 0)
     {
         printf("\n El sector mas activo es ADMINISTRACION.");
     }else if (sectorGanador == 1)
@@ -87,7 +90,7 @@ void sectorMasActivo(Impresora impresora[SECTORES][IMPRESORAS])
         printf("\n El sector mas activo es TECNICA.");
     }else
     {
-        printf("\n El sector mas activo es RECUSROS HUMANOS.");
+        printf("\n El sector mas activo es RECURSOS HUMANOS.");
     }
        
 }
@@ -100,7 +103,7 @@ void informeGeneral(Impresora impresora[SECTORES][IMPRESORAS])
         int totalSector = 0;
         printf("\nSector %d - %s\n", i, nombres[i]);
         for (int j = 0; j < IMPRESORAS; j++) {
-            printf("  Impresora %d: %s, %d\n",j , impresora[i][j].estado ? "activa" : "inactiva", impresora[i][j].paginas);
+            printf("  Impresora %d: %s, %d\n",j+1 , impresora[i][j].estado ? "activa" : "inactiva", impresora[i][j].paginas);
             totalSector += impresora[i][j].paginas;
         }
         printf("  Total de paginas impresas en el sector: %d\n", totalSector);
