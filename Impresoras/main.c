@@ -8,6 +8,10 @@ int main()
     Impresora impresora[SECTORES][IMPRESORAS];
     int opcion;
     int sector, nro;
+
+
+    inicializarOficina(impresora);
+
     do
     {
         menuShow();
@@ -15,71 +19,67 @@ int main()
         switch (opcion)
         {
         case 1:
-            inicializarOficina(impresora);
-            break;
-        
-        case 2:
             do
             {
-                printf("\n Ingrese el sector a modificar");
+                printf("\n Ingrese el sector a modificar: ");
                 scanf("%d", &sector);
-                if (sector<0 || sector>3)
+                if (sector < 0 || sector >= SECTORES)
                 {
-                    printf("Esta ingresando un sector incorrecto. \n");
+                    printf("Está ingresando un sector incorrecto.\n");
                 }
-            } while (sector<0 || sector>3);
+            } while (sector < 0 || sector >= SECTORES);
 
             do
             {
-                printf("\n Ingrese el numero de impresora a modificar");
+                printf("\n Ingrese el número de impresora a modificar: ");
                 scanf("%d", &nro);
-                if (nro<0 || nro>4)
+                if (nro < 0 || nro >= IMPRESORAS)
                 {
-                    printf("Esta ingresando un numero de impresora. \n");
+                    printf("Está ingresando un número de impresora incorrecto.\n");
                 }
-            } while (nro<0 || nro>4);
-            
+            } while (nro < 0 || nro >= IMPRESORAS);
+
             modificarImpresora(impresora, sector, nro);
-            
+            break;
+
+        case 2:
+            do
+            {
+                printf("\n Ingrese el sector que desea visualizar: ");
+                scanf("%d", &sector);
+                if (sector < 0 || sector >= SECTORES)
+                {
+                    printf("Está ingresando un sector incorrecto.\n");
+                }
+            } while (sector < 0 || sector >= SECTORES);
+
+            paginasPorSector(impresora, sector);
             break;
 
         case 3:
             do
             {
-                printf("\n Ingrese el sector que desa visualizar: ");
+                printf("\n Ingrese el sector que desea visualizar: ");
                 scanf("%d", &sector);
-                if (sector<0 || sector>3)
+                if (sector < 0 || sector >= SECTORES)
                 {
-                    printf("Esta ingresando un sector incorrecto. \n");
+                    printf("Está ingresando un sector incorrecto.\n");
                 }
-            } while (sector<0 || sector>3);
+            } while (sector < 0 || sector >= SECTORES);
 
-            paginasPorSector(impresora, sector);
-
+            printf("Número de impresoras activas: %d\n", activasPorSector(impresora, sector));
             break;
 
         case 4:
-            do
-            {
-                printf("\n Ingrese el sector que desa visualizar: ");
-                scanf("%d", &sector);
-                if (sector<0 || sector>3)
-                {
-                    printf("Esta ingresando un sector incorrecto. \n");
-                }
-            } while (sector<0 || sector>3);
-            printf("Numero de impresoras activas: %d", activasPorSector(impresora, sector));
-            break;
-        
-        case 5:
-            sectorMasActivo(impresora);            
+            sectorMasActivo(impresora);
             break;
 
-        case 6:
+        case 5:
             informeGeneral(impresora);
             break;
         }
     } while (opcion != 0);
-    
+
     return 0;
 }
+
