@@ -5,7 +5,7 @@
 void inicializarOficina(Impresora impresora[SECTORES][IMPRESORAS]) 
 {
     memset(impresora, 0, sizeof(Impresora) * SECTORES * IMPRESORAS);
-    printf("Todas las impresoras han sido inicializadas.");
+    printf("Tods las impresoras han sido inicializadas.");
 }
 void modificarImpresora(Impresora impresora[SECTORES][IMPRESORAS], int sector, int nro)
 {
