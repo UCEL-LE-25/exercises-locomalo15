@@ -12,15 +12,30 @@ void modificarImpresora(Impresora impresora[SECTORES][IMPRESORAS], int sector, i
     int estadoActual=0;
     int impresionActual=0;
     printf("\n MODIFICANDO SECTOR %d IMPRESORA %d \n", sector, nro);
-    printf("\n Ingrese nuevo estado (0. Inactiva | 1. Activa)");
-    scanf("%d", &estadoActual);
+
+    do {
+        printf("\n Ingrese nuevo estado (0. Inactiva | 1. Activa): ");
+        scanf("%d", &estadoActual);
+        if (estadoActual != 0 && estadoActual != 1) {
+            printf("Estado inválido. Ingrese 0 o 1.\n");
+        }
+    } while (estadoActual != 0 && estadoActual != 1);
+    
     impresora[sector][nro].estado = estadoActual;
+
     if (estadoActual == 1)
     {
-        printf("\n Ingrese el numero de paginas a imprimir: ");
-        scanf("%d", &impresionActual);
+        do {
+            printf("\n Ingrese el numero de paginas a imprimir: ");
+            scanf("%d", &impresionActual);
+            if (impresionActual < 0) {
+                printf("El número debe ser positivo.\n");
+            }
+        } while (impresionActual < 0);
+
         impresora[sector][nro].paginas += impresionActual;
     }
+
     
 
 }
