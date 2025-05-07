@@ -35,7 +35,7 @@ int main()
                 scanf("%d", &nro);
                 if (nro < 0 || nro >= IMPRESORAS)
                 {
-                    printf("Está ingresando un número de impresora incorrecto.\n");
+                    printf("Esta ingresando un numero de impresora incorrecto.\n");
                 }
             } while (nro < 0 || nro >= IMPRESORAS);
 
@@ -49,7 +49,7 @@ int main()
                 scanf("%d", &sector);
                 if (sector < 0 || sector >= SECTORES)
                 {
-                    printf("Está ingresando un sector incorrecto.\n");
+                    printf("Esta ingresando un sector incorrecto.\n");
                 }
             } while (sector < 0 || sector >= SECTORES);
 
@@ -67,7 +67,7 @@ int main()
                 }
             } while (sector < 0 || sector >= SECTORES);
 
-            printf("Número de impresoras activas: %d\n", activasPorSector(impresora, sector));
+            printf("Numero de impresoras activas: %d\n", activasPorSector(impresora, sector));
             break;
 
         case 4:
