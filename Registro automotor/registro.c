@@ -47,11 +47,12 @@ void listarRegistros() {
     while (fscanf(fr, "%d;%d\n", &r.idRegistro, &r.idDomicilio) == 2) {
         rewind(fd);
         int encontrado = 0;
+
         while (fscanf(fd, "%d;%[^;];%[^;];%d;%[^;];%d\n",
                       &d.idDomicilio, d.ciudad, d.provincia,
                       &d.codigoPostal, d.calle, &d.numero) == 6) {
             if (d.idDomicilio == r.idDomicilio) {
-                printf("ID Registro: %d - Dirección: %s %d, %s (%d), %s\n",
+                printf("ID Registro: %d - Direccion: %s %d, %s (%d), %s\n",
                        r.idRegistro, d.calle, d.numero, d.ciudad, d.codigoPostal, d.provincia);
                 encontrado = 1;
                 break;

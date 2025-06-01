@@ -49,6 +49,9 @@ void altaAutomotor() {
         autoNuevo.idVehiculo = rand() % 10000; // Ejemplo: ID aleatorio entre 0 y 9999
     } while (idVehiculoExiste(autoNuevo.idVehiculo));
 
+
+    getchar();
+
     printf("Ingrese dominio: ");
     fgets(autoNuevo.dominio, sizeof(autoNuevo.dominio), stdin);
     autoNuevo.dominio[strcspn(autoNuevo.dominio, "\n")] = '\0';
@@ -69,7 +72,7 @@ void altaAutomotor() {
     printf("Ingrese numero de motor: ");
     fgets(autoNuevo.motor, sizeof(autoNuevo.motor), stdin);
     autoNuevo.motor[strcspn(autoNuevo.motor, "\n")] = '\0';
-    getchar();
+
 
     printf("Ingrese anio de fabricacion: ");
     scanf("%d", &autoNuevo.anioFabricacion);
