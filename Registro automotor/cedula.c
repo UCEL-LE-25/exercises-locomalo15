@@ -18,12 +18,12 @@ void altaCedula() {
     printf("Ingrese fecha de emision (dd/mm/aaaa): ");
     fgets(nueva.fechaEmision, sizeof(nueva.fechaEmision), stdin);
     nueva.fechaEmision[strcspn(nueva.fechaEmision, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
+
 
     printf("Ingrese fecha de vencimiento (dd/mm/aaaa): ");
     fgets(nueva.fechaVencimiento, sizeof(nueva.fechaVencimiento), stdin);
     nueva.fechaVencimiento[strcspn(nueva.fechaVencimiento, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
+
 
     printf("Ingrese id del vehiculo: ");
     scanf("%d", &nueva.idVehiculo);

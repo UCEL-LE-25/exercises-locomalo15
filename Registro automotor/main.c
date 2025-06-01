@@ -4,9 +4,13 @@
 #include "automotor.h"
 #include "titular.h"
 #include "cedula.h"
+#include "registro.h"
 
 int main() {
     int opcion;
+
+
+    altaRegistro();
 
     do {
         menuShow();

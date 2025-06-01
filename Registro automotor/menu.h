@@ -3,6 +3,6 @@
 
 
 void menuShow();
-int pedirOpcion();
+int pedirOpcion(int a, int b);
 
 #endif

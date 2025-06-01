@@ -33,6 +33,8 @@ int crearDomicilio() {
         nuevo.idDomicilio = rand() % 10000; // Ejemplo: ID aleatorio entre 0 y 9999
     } while (existeIdDomicilio(nuevo.idDomicilio));
 
+
+
     printf("Ingrese ciudad: ");
     fgets(nuevo.ciudad, sizeof(nuevo.ciudad), stdin);
     nuevo.ciudad[strcspn(nuevo.ciudad, "\n")] = '\0';
