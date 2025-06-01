@@ -2,3 +2,4 @@
 2;ptt 444;Renault;Fluence;asdfghjkl12345678;12345667;2015;Francia;Remis;1250;44994806;69
 3;ACM 1PT;Ferrari;458 Italia;1234555555abab;pqwei129r;2025;Italia;Profesional;990;43234782;24
 8467;mama en b;la;oyota;ilux;234629dfj;1979711610;ajfo23;rgentina;4223403;6422224;-2
+6334;MJV 444;Chevrolet;Corsa;213sdfok1;askfj2i9j3;2014;EEUU;Publico;2000;38234782;1

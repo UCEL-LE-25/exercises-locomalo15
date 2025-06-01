@@ -48,34 +48,28 @@ void altaAutomotor() {
     do {        
         autoNuevo.idVehiculo = rand() % 10000; // Ejemplo: ID aleatorio entre 0 y 9999
     } while (idVehiculoExiste(autoNuevo.idVehiculo));
-    printf("%d", autoNuevo.idVehiculo);
-
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese dominio: ");
     fgets(autoNuevo.dominio, sizeof(autoNuevo.dominio), stdin);
     autoNuevo.dominio[strcspn(autoNuevo.dominio, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese marca: ");
     fgets(autoNuevo.marca, sizeof(autoNuevo.marca), stdin);
     autoNuevo.marca[strcspn(autoNuevo.marca, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese modelo: ");
     fgets(autoNuevo.modelo, sizeof(autoNuevo.modelo), stdin);
     autoNuevo.modelo[strcspn(autoNuevo.modelo, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese numero de chasis: ");
     fgets(autoNuevo.chasis, sizeof(autoNuevo.chasis), stdin);
     autoNuevo.chasis[strcspn(autoNuevo.chasis, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
+
 
     printf("Ingrese numero de motor: ");
     fgets(autoNuevo.motor, sizeof(autoNuevo.motor), stdin);
     autoNuevo.motor[strcspn(autoNuevo.motor, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
+    getchar();
 
     printf("Ingrese anio de fabricacion: ");
     scanf("%d", &autoNuevo.anioFabricacion);
@@ -84,20 +78,16 @@ void altaAutomotor() {
     printf("Ingrese pais de origen: ");
     fgets(autoNuevo.paisOrigen, sizeof(autoNuevo.paisOrigen), stdin);
     autoNuevo.paisOrigen[strcspn(autoNuevo.paisOrigen, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese tipo de uso: ");
     fgets(autoNuevo.tipoUso, sizeof(autoNuevo.tipoUso), stdin);
     autoNuevo.tipoUso[strcspn(autoNuevo.tipoUso, "\n")] = '\0';
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese peso (kg): ");
     scanf("%d", &autoNuevo.peso);
-    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese Nro. Documento del titular: ");
     scanf("%d", &autoNuevo.nroDocTitular);
-    getchar(); // limpia el '\n' que queda en el buffer
 
     autoNuevo.nroRegistro = seleccionarRegistro();
 
