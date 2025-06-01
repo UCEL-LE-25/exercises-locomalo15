@@ -7,8 +7,7 @@ typedef struct
     int nroCedula; //[PK]
     char fechaEmision[11];
     char fechaVencimiento[11];
-    char dominioVehiculo[10];  // [FK] de automotor
-    int dniTitular; //[FK] de titular
+    int idVehiculo;  // [FK] de automotor
 }Cedula;
 
 

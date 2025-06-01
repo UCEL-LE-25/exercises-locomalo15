@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "automotor.h"
+#include "registro.h"
 
 int idVehiculoExiste(int idBuscado) {
     FILE *archivo = fopen("registro.txt", "r");
@@ -22,7 +23,7 @@ int idVehiculoExiste(int idBuscado) {
             temp.tipoUso,
             &temp.peso,
             &temp.nroDocTitular,
-            &temp.nroCedula) == 12)
+            &temp.nroRegistro) == 12)
     {
         if (temp.idVehiculo == idBuscado) {
             fclose(archivo);
@@ -59,22 +60,27 @@ void altaAutomotor() {
     printf("Ingrese dominio: ");
     fgets(autoNuevo.dominio, sizeof(autoNuevo.dominio), stdin);
     autoNuevo.dominio[strcspn(autoNuevo.dominio, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese marca: ");
     fgets(autoNuevo.marca, sizeof(autoNuevo.marca), stdin);
     autoNuevo.marca[strcspn(autoNuevo.marca, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese modelo: ");
     fgets(autoNuevo.modelo, sizeof(autoNuevo.modelo), stdin);
     autoNuevo.modelo[strcspn(autoNuevo.modelo, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese numero de chasis: ");
     fgets(autoNuevo.chasis, sizeof(autoNuevo.chasis), stdin);
     autoNuevo.chasis[strcspn(autoNuevo.chasis, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese numero de motor: ");
     fgets(autoNuevo.motor, sizeof(autoNuevo.motor), stdin);
     autoNuevo.motor[strcspn(autoNuevo.motor, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese anio de fabricacion: ");
     scanf("%d", &autoNuevo.anioFabricacion);
@@ -83,19 +89,22 @@ void altaAutomotor() {
     printf("Ingrese pais de origen: ");
     fgets(autoNuevo.paisOrigen, sizeof(autoNuevo.paisOrigen), stdin);
     autoNuevo.paisOrigen[strcspn(autoNuevo.paisOrigen, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese tipo de uso: ");
     fgets(autoNuevo.tipoUso, sizeof(autoNuevo.tipoUso), stdin);
     autoNuevo.tipoUso[strcspn(autoNuevo.tipoUso, "\n")] = '\0';
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese peso (kg): ");
     scanf("%d", &autoNuevo.peso);
+    getchar(); // limpia el '\n' que queda en el buffer
 
     printf("Ingrese Nro. Documento del titular: ");
     scanf("%d", &autoNuevo.nroDocTitular);
+    getchar(); // limpia el '\n' que queda en el buffer
 
-    printf("Ingrese Nro. de cedula: ");
-    scanf("%d", &autoNuevo.nroCedula);
+    autoNuevo.nroRegistro = seleccionRegistro();
 
     // Escribir en el archivo (formato de texto plano)
     fprintf(archivo, "%d;%s;%s;%s;%s;%s;%d;%s;%s;%d;%d;%d\n",
@@ -110,7 +119,7 @@ void altaAutomotor() {
         autoNuevo.tipoUso,
         autoNuevo.peso,
         autoNuevo.nroDocTitular,
-        autoNuevo.nroCedula
+        autoNuevo.nroRegistro
     );
 
     fclose(archivo);
@@ -142,7 +151,7 @@ void listarTodos() {
             autoLeido.tipoUso,
             &autoLeido.peso,
             &autoLeido.nroDocTitular,
-            &autoLeido.nroCedula
+            &autoLeido.nroRegistro
         );
 
         printf("\nID Vehiculo: %d\n", autoLeido.idVehiculo);
@@ -156,7 +165,7 @@ void listarTodos() {
         printf("Tipo de Uso: %s\n", autoLeido.tipoUso);
         printf("Peso: %d kg\n", autoLeido.peso);
         printf("DNI Titular: %d\n", autoLeido.nroDocTitular);
-        printf("Nro. de Cedula: %d\n", autoLeido.nroCedula);
+        printf("Nro. de registro: %d\n", autoLeido.nroRegistro);
     }
 
     fclose(archivo);
@@ -190,7 +199,7 @@ void bajaVehiculo() {
                   a.tipoUso,
                   &a.peso,
                   &a.nroDocTitular,
-                  &a.nroCedula) == 12) {
+                  &a.nroRegistro) == 12) {
 
         if (a.idVehiculo == idEliminar) {
             encontrado = 1;
@@ -209,7 +218,7 @@ void bajaVehiculo() {
                 a.tipoUso,
                 a.peso,
                 a.nroDocTitular,
-                a.nroCedula);
+                a.nroRegistro);
     }
 
     fclose(original);

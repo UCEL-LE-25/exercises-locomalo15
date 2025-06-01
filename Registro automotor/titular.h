@@ -8,7 +8,7 @@ typedef struct
     char tipoDocumento [10];
     int nroDocumento; //[PK]
     char fechaNacimiento [20]; //Se puede usar DATE
-    int idVehiculo[3]; //[FK] de vehiculo
+    int idDomicilio; //[FK] Domicilio
 }Titular;
 
 void altaTitular();

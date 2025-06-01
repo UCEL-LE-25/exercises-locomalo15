@@ -15,7 +15,7 @@ typedef struct
     char tipoUso [15]; // Puede ser: PRIVADO, PROFESIONAL, PUBLICO, MAQUINARIA AGRICOLA.
     int peso; //en kg, usamos int para simplificar la impresion.
     int nroDocTitular; //[FK]
-    int nroCedula; //[FK] de cedula
+    int nroRegistro; //[FK] de registro
 }Automotor;
 
 void altaAutomotor();

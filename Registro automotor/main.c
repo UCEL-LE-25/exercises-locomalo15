@@ -14,9 +14,9 @@ int main() {
 
         switch (opcion) {
             case 1:
+                altaTitular();
                 altaAutomotor();
                 altaCedula();
-                altaTitular();
                 break;
             case 2:
                 altaAutomotor();
