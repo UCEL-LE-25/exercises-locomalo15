@@ -13,5 +13,6 @@ typedef struct
 }Titular;
 
 void altaTitular();
+void listarTitulares();
 
 #endif

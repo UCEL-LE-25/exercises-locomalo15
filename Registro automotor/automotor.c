@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "automotor.h"
 
 int idVehiculoExiste(int idBuscado) {
@@ -44,7 +45,7 @@ void altaAutomotor() {
 
     int id;
     do {
-        printf("Ingrese ID del vehículo: ");
+        printf("Ingrese ID del vehiculo: ");
         scanf("%d", &id);
         if (idVehiculoExiste(id)) {
             printf("Ese ID ya existe. Intente con otro.\n");
@@ -53,29 +54,39 @@ void altaAutomotor() {
 
     autoNuevo.idVehiculo = id;
 
+    getchar(); // limpia el '\n' que queda en el buffer
+
     printf("Ingrese dominio: ");
-    scanf("%s", autoNuevo.dominio);
+    fgets(autoNuevo.dominio, sizeof(autoNuevo.dominio), stdin);
+    autoNuevo.dominio[strcspn(autoNuevo.dominio, "\n")] = '\0';
 
     printf("Ingrese marca: ");
-    scanf("%s", autoNuevo.marca);
+    fgets(autoNuevo.marca, sizeof(autoNuevo.marca), stdin);
+    autoNuevo.marca[strcspn(autoNuevo.marca, "\n")] = '\0';
 
     printf("Ingrese modelo: ");
-    scanf("%s", autoNuevo.modelo);
+    fgets(autoNuevo.modelo, sizeof(autoNuevo.modelo), stdin);
+    autoNuevo.modelo[strcspn(autoNuevo.modelo, "\n")] = '\0';
 
-    printf("Ingrese número de chasis: ");
-    scanf("%s", autoNuevo.chasis);
+    printf("Ingrese numero de chasis: ");
+    fgets(autoNuevo.chasis, sizeof(autoNuevo.chasis), stdin);
+    autoNuevo.chasis[strcspn(autoNuevo.chasis, "\n")] = '\0';
 
-    printf("Ingrese número de motor: ");
-    scanf("%s", autoNuevo.motor);
+    printf("Ingrese numero de motor: ");
+    fgets(autoNuevo.motor, sizeof(autoNuevo.motor), stdin);
+    autoNuevo.motor[strcspn(autoNuevo.motor, "\n")] = '\0';
 
-    printf("Ingrese año de fabricación: ");
+    printf("Ingrese anio de fabricacion: ");
     scanf("%d", &autoNuevo.anioFabricacion);
+    getchar(); // limpia el '\n' que queda en el buffer
 
-    printf("Ingrese país de origen: ");
-    scanf("%s", autoNuevo.paisOrigen);
+    printf("Ingrese pais de origen: ");
+    fgets(autoNuevo.paisOrigen, sizeof(autoNuevo.paisOrigen), stdin);
+    autoNuevo.paisOrigen[strcspn(autoNuevo.paisOrigen, "\n")] = '\0';
 
     printf("Ingrese tipo de uso: ");
-    scanf("%s", autoNuevo.tipoUso);
+    fgets(autoNuevo.tipoUso, sizeof(autoNuevo.tipoUso), stdin);
+    autoNuevo.tipoUso[strcspn(autoNuevo.tipoUso, "\n")] = '\0';
 
     printf("Ingrese peso (kg): ");
     scanf("%d", &autoNuevo.peso);
@@ -83,7 +94,7 @@ void altaAutomotor() {
     printf("Ingrese Nro. Documento del titular: ");
     scanf("%d", &autoNuevo.nroDocTitular);
 
-    printf("Ingrese Nro. de cédula: ");
+    printf("Ingrese Nro. de cedula: ");
     scanf("%d", &autoNuevo.nroCedula);
 
     // Escribir en el archivo (formato de texto plano)
@@ -104,4 +115,113 @@ void altaAutomotor() {
 
     fclose(archivo);
     printf("Automotor guardado exitosamente.\n");
+}
+
+void listarTodos() {
+    FILE *archivo = fopen("registro.txt", "r");
+    if (archivo == NULL) {
+        printf("No se pudo abrir el archivo de registros.\n");
+        return;
+    }
+
+    Automotor autoLeido;
+    char linea[256];
+
+    printf("\n--- LISTADO DE AUTOMOTORES ---\n");
+
+    while (fgets(linea, sizeof(linea), archivo)) {
+        sscanf(linea, "%d;%9[^;];%19[^;];%19[^;];%19[^;];%19[^;];%d;%19[^;];%14[^;];%d;%d;%d",
+            &autoLeido.idVehiculo,
+            autoLeido.dominio,
+            autoLeido.marca,
+            autoLeido.modelo,
+            autoLeido.chasis,
+            autoLeido.motor,
+            &autoLeido.anioFabricacion,
+            autoLeido.paisOrigen,
+            autoLeido.tipoUso,
+            &autoLeido.peso,
+            &autoLeido.nroDocTitular,
+            &autoLeido.nroCedula
+        );
+
+        printf("\nID Vehiculo: %d\n", autoLeido.idVehiculo);
+        printf("Dominio: %s\n", autoLeido.dominio);
+        printf("Marca: %s\n", autoLeido.marca);
+        printf("Modelo: %s\n", autoLeido.modelo);
+        printf("Chasis: %s\n", autoLeido.chasis);
+        printf("Motor: %s\n", autoLeido.motor);
+        printf("Anioo de Fabricacion: %d\n", autoLeido.anioFabricacion);
+        printf("Pais de Origen: %s\n", autoLeido.paisOrigen);
+        printf("Tipo de Uso: %s\n", autoLeido.tipoUso);
+        printf("Peso: %d kg\n", autoLeido.peso);
+        printf("DNI Titular: %d\n", autoLeido.nroDocTitular);
+        printf("Nro. de Cedula: %d\n", autoLeido.nroCedula);
+    }
+
+    fclose(archivo);
+}
+
+void bajaVehiculo() {
+    int idEliminar;
+    printf("Ingrese el ID del vehículo que desea dar de baja: ");
+    scanf("%d", &idEliminar);
+
+    FILE *original = fopen("registro.txt", "r");
+    FILE *temporal = fopen("temp.txt", "w");
+
+    if (original == NULL || temporal == NULL) {
+        printf("Error al abrir los archivos.\n");
+        return;
+    }
+
+    Automotor a;
+    int encontrado = 0;
+
+    while (fscanf(original, "%d;%[^;];%[^;];%[^;];%[^;];%[^;];%d;%[^;];%[^;];%d;%d;%d\n",
+                  &a.idVehiculo,
+                  a.dominio,
+                  a.marca,
+                  a.modelo,
+                  a.chasis,
+                  a.motor,
+                  &a.anioFabricacion,
+                  a.paisOrigen,
+                  a.tipoUso,
+                  &a.peso,
+                  &a.nroDocTitular,
+                  &a.nroCedula) == 12) {
+
+        if (a.idVehiculo == idEliminar) {
+            encontrado = 1;
+            continue; // No lo escribimos, lo "eliminamos"
+        }
+
+        fprintf(temporal, "%d;%s;%s;%s;%s;%s;%d;%s;%s;%d;%d;%d\n",
+                a.idVehiculo,
+                a.dominio,
+                a.marca,
+                a.modelo,
+                a.chasis,
+                a.motor,
+                a.anioFabricacion,
+                a.paisOrigen,
+                a.tipoUso,
+                a.peso,
+                a.nroDocTitular,
+                a.nroCedula);
+    }
+
+    fclose(original);
+    fclose(temporal);
+
+    // Reemplazar archivo original
+    remove("registro.txt");
+    rename("temp.txt", "registro.txt");
+
+    if (encontrado) {
+        printf("Vehículo con ID %d dado de baja exitosamente.\n", idEliminar);
+    } else {
+        printf("No se encontró un vehículo con ese ID.\n");
+    }
 }

@@ -20,5 +20,7 @@ typedef struct
 
 void altaAutomotor();
 int idVehiculoExiste(int idBuscado);
+void listarTodos();
+void bajaVehiculo();
 
 #endif

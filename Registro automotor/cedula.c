@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "cedula.h"
 
 void altaCedula() {
@@ -10,17 +11,21 @@ void altaCedula() {
 
     Cedula nueva;
 
-    printf("Ingrese número de cédula: ");
+    printf("Ingrese numero de cedula: ");
     scanf("%d", &nueva.nroCedula);
+    getchar(); // limpia el '\n' que queda en el buffer
 
-    printf("Ingrese fecha de emisión (dd/mm/aaaa): ");
-    scanf("%s", nueva.fechaEmision);
+    printf("Ingrese fecha de emision (dd/mm/aaaa): ");
+    fgets(nueva.fechaEmision, sizeof(nueva.fechaEmision), stdin);
+    nueva.fechaEmision[strcspn(nueva.fechaEmision, "\n")] = '\0';
 
     printf("Ingrese fecha de vencimiento (dd/mm/aaaa): ");
-    scanf("%s", nueva.fechaVencimiento);
+    fgets(nueva.fechaVencimiento, sizeof(nueva.fechaVencimiento), stdin);
+    nueva.fechaVencimiento[strcspn(nueva.fechaVencimiento, "\n")] = '\0';
 
-    printf("Ingrese dominio del vehículo: ");
-    scanf("%s", nueva.dominioVehiculo);
+    printf("Ingrese dominio del vehiculo: ");
+    fgets(nueva.dominioVehiculo, sizeof(nueva.dominioVehiculo), stdin);
+    nueva.dominioVehiculo[strcspn(nueva.dominioVehiculo, "\n")] = '\0';
 
     printf("Ingrese DNI del titular: ");
     scanf("%d", &nueva.dniTitular);
@@ -34,5 +39,5 @@ void altaCedula() {
     );
 
     fclose(archivo);
-    printf("Cédula guardada exitosamente.\n");
+    printf("Cedula guardada exitosamente.\n");
 }

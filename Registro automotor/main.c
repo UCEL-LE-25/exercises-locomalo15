@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "menu.h"
 #include "automotor.h"
 #include "titular.h"
@@ -9,7 +10,7 @@ int main() {
 
     do {
         menuShow();
-        opcion = pedirOpcion(0, 8);
+        opcion = pedirOpcion(0, 10);
 
         switch (opcion) {
             case 1:
@@ -24,11 +25,20 @@ int main() {
             case 3:
                 altaTitular();
                 break;
+            case 5:
+                bajaVehiculo();
+                break;
             case 0:
                 printf("Saliendo del sistema...\n");
                 break;
+            case 6:
+                listarTodos();
+                break;
+            case 9:
+                listarTitulares();
+                break;
             default:
-                printf("Opción no implementada aún.\n");
+                printf("Opcion aun no implementada.\n");
         }
 
     } while (opcion != 0);

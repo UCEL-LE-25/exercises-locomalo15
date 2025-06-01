@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "titular.h"
 
 void altaTitular() {
@@ -19,7 +20,7 @@ void altaTitular() {
     printf("Ingrese tipo de documento (DNI, LC, LE, etc): ");
     scanf("%s", nuevo.tipoDocumento);
 
-    printf("Ingrese número de documento: ");
+    printf("Ingrese numero de documento: ");
     scanf("%d", &nuevo.nroDocumento);
 
     printf("Ingrese fecha de nacimiento (dd/mm/aaaa): ");
@@ -43,4 +44,31 @@ void altaTitular() {
 
     fclose(archivo);
     printf("Titular guardado exitosamente.\n");
+}
+
+void listarTitulares() {
+    FILE *archivo = fopen("titulares.txt", "r");
+    if (archivo == NULL) {
+        printf("No se pudo abrir el archivo de titulares.\n");
+        return;
+    }
+
+    Titular t;
+    printf("\n--- Lista de Titulares ---\n");
+    while (fscanf(archivo, "%[^;];%d;%[^;];%d;%[^\n]\n",
+                  t.nombre,
+                  &t.cuit,
+                  t.tipoDocumento,
+                  &t.nroDocumento,
+                  t.fechaNacimiento) == 5) {
+
+        printf("Nombre: %s\n", t.nombre);
+        printf("CUIT: %d\n", t.cuit);
+        printf("Tipo de Documento: %s\n", t.tipoDocumento);
+        printf("Numero de Documento: %d\n", t.nroDocumento);
+        printf("Fecha de Nacimiento: %s\n", t.fechaNacimiento);
+        printf("-----------------------------\n");
+    }
+
+    fclose(archivo);
 }

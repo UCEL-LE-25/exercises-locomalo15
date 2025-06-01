@@ -1,0 +1,1 @@
+1;abc 123;Ford;Focus;abab1212cdcd3434;1234;2016;;Privado;2000;43234782;2323
