@@ -164,7 +164,7 @@ void listarTodos() {
 
 void bajaVehiculo() {
     int idEliminar;
-    printf("Ingrese el ID del vehículo que desea dar de baja: ");
+    printf("Ingrese el ID del vehiculo que desea dar de baja: ");
     scanf("%d", &idEliminar);
 
     FILE *original = fopen("registro.txt", "r");
@@ -220,8 +220,8 @@ void bajaVehiculo() {
     rename("temp.txt", "registro.txt");
 
     if (encontrado) {
-        printf("Vehículo con ID %d dado de baja exitosamente.\n", idEliminar);
+        printf("Vehiculo con ID %d dado de baja exitosamente.\n", idEliminar);
     } else {
-        printf("No se encontró un vehículo con ese ID.\n");
+        printf("No se encontro un vehículo con ese ID.\n");
     }
 }

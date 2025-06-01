@@ -35,7 +35,7 @@ int main() {
                 listarTodos();
                 break;
             case 9:
-                listarTitulares();
+                listarTitularesConVehiculos();
                 break;
             default:
                 printf("Opcion aun no implementada.\n");
