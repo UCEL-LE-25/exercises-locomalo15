@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "automotor.h"
 #include "registro.h"
 
@@ -11,7 +12,7 @@ int idVehiculoExiste(int idBuscado) {
 
     Automotor temp;
 
-    while (fscanf(archivo, "%d;%[^;];%[^;];%[^;];%[^;];%[^;];%d;%[^;];%[^;];%d;%d;%d\n",
+    while (fscanf(archivo, "%d;%[^;];%[^;];%[^;];%[^;];%[^;%d;%[^;];%[^;];%d;%d;%d\n",
             &temp.idVehiculo,
             temp.dominio,
             temp.marca,
@@ -44,16 +45,10 @@ void altaAutomotor() {
 
     Automotor autoNuevo;
 
-    int id;
-    do {
-        printf("Ingrese ID del vehiculo: ");
-        scanf("%d", &id);
-        if (idVehiculoExiste(id)) {
-            printf("Ese ID ya existe. Intente con otro.\n");
-        }
-    } while (idVehiculoExiste(id));
-
-    autoNuevo.idVehiculo = id;
+    do {        
+        autoNuevo.idVehiculo = rand() % 10000; // Ejemplo: ID aleatorio entre 0 y 9999
+    } while (idVehiculoExiste(autoNuevo.idVehiculo));
+    printf("%d", autoNuevo.idVehiculo);
 
     getchar(); // limpia el '\n' que queda en el buffer
 
@@ -104,7 +99,7 @@ void altaAutomotor() {
     scanf("%d", &autoNuevo.nroDocTitular);
     getchar(); // limpia el '\n' que queda en el buffer
 
-    autoNuevo.nroRegistro = seleccionRegistro();
+    autoNuevo.nroRegistro = seleccionarRegistro();
 
     // Escribir en el archivo (formato de texto plano)
     fprintf(archivo, "%d;%s;%s;%s;%s;%s;%d;%s;%s;%d;%d;%d\n",

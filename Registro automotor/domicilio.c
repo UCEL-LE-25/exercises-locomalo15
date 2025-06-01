@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "domicilio.h"  // Asegurate de tener este header con el struct Domicilio definido
+#include "domicilio.h"  
 
 int existeIdDomicilio(int idBuscado) {
     FILE *archivo = fopen("domicilios.txt", "r");
@@ -36,10 +36,12 @@ int crearDomicilio() {
     printf("Ingrese ciudad: ");
     fgets(nuevo.ciudad, sizeof(nuevo.ciudad), stdin);
     nuevo.ciudad[strcspn(nuevo.ciudad, "\n")] = '\0';
+    getchar();
 
     printf("Ingrese provincia: ");
     fgets(nuevo.provincia, sizeof(nuevo.provincia), stdin);
     nuevo.provincia[strcspn(nuevo.provincia, "\n")] = '\0';
+    getchar();
 
     printf("Ingrese codigo postal: ");
     scanf("%d", &nuevo.codigoPostal);
@@ -48,6 +50,7 @@ int crearDomicilio() {
     printf("Ingrese calle: ");
     fgets(nuevo.calle, sizeof(nuevo.calle), stdin);
     nuevo.calle[strcspn(nuevo.calle, "\n")] = '\0';
+    getchar();
 
     printf("Ingrese numero: ");
     scanf("%d", &nuevo.numero);

@@ -11,6 +11,6 @@ typedef struct
 
 void altaRegistro();
 void listarRegistros();
-int seleccionRegistro();
+int seleccionarRegistro();
 
 #endif

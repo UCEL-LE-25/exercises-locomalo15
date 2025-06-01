@@ -1,3 +1,4 @@
 1;abc 123;Toyota;Etios;123456789asdfghjk;12345678;2016;Japon;Privado;990;43234782;23
 2;ptt 444;Renault;Fluence;asdfghjkl12345678;12345667;2015;Francia;Remis;1250;44994806;69
 3;ACM 1PT;Ferrari;458 Italia;1234555555abab;pqwei129r;2025;Italia;Profesional;990;43234782;24
+8467;mama en b;la;oyota;ilux;234629dfj;1979711610;ajfo23;rgentina;4223403;6422224;-2
