@@ -3,6 +3,7 @@
 int main()
 {
     printf("\n Manejo de archivos \n");
+    
     FILE *archivo = fopen("escritura.txt", "r");
     if(archivo == NULL) {
         printf("No se pudo abrir el archivo.\n");
@@ -16,5 +17,6 @@ int main()
     }
 
     fclose(archivo);
+
     return 0;
 }
